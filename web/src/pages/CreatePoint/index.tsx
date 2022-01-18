@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import Logo from "../../assets/logo.svg";
 import { FiArrowLeft } from "react-icons/fi";
 import "./styles.css";
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+
 
 const CreatePoint = () => {
   return (
@@ -47,46 +49,56 @@ const CreatePoint = () => {
             <h2>Endereço</h2>
             <span>Selecione o endereço no mapa</span>
           </legend>
+          
+          <MapContainer center={[-27.557888,-48.513024]} zoom={13} >
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <Marker position={[-27.557888,-48.513024]}>
+              <Popup>
+                A pretty CSS3 popup. <br /> Easily customizable.
+              </Popup>
+            </Marker>
+          </MapContainer>
+          
+          <div className="field-group">
+            <div className="field">
+              <label htmlFor="uf">Estado(UF)</label>
+              <select id="uf" name="uf">
+                <option value="0">Selecione uma UF</option>
+              </select>
+            </div>
+            <div className="field">
+              <label htmlFor="city">Cidade</label>
+              <select id="city" name="city">
+                <option value="0">Selecione uma cidade</option>
+              </select>
+            </div>
+          </div>
         </fieldset>
-
+        
         <fieldset>
           <legend>
             <h2>Ítens de coleta</h2>
-            <span>Selecione um ou mais ítens no mapa</span>
-
-            <div className="field-group">
-              <div className="field">
-                <label htmlFor="uf">Estado(UF)</label>
-                <select id="uf" name="uf">
-                  <option value="0">Selecione</option>
-                </select>
-              </div>
-              <div className="field">
-                <label htmlFor="city">Cidade</label>
-                <select id="city" name="city">
-                  <option value="0">Selecione</option>
-                </select>
-              </div>
-            </div>
+            <span>Selecione um ou mais ítens abaixo</span>
           </legend>
-        </fieldset>
-        <fieldset>
           <ul className="items-grid">
             <li>
               <img src="http://localhost:3333/uploads/oleo.svg" alt="teste" />
-              <span>texto da imagem, e.g. oleo</span>
+              <span>Óleo de cozinha</span>
             </li>
             <li>
               <img src="http://localhost:3333/uploads/oleo.svg" alt="teste" />
-              <span>texto da imagem, e.g. oleo</span>
+              <span></span>
             </li>
             <li>
               <img src="http://localhost:3333/uploads/oleo.svg" alt="teste" />
-              <span>texto da imagem, e.g. oleo</span>
+              <span></span>
             </li>
             <li>
               <img src="http://localhost:3333/uploads/oleo.svg" alt="teste" />
-              <span>texto da imagem, e.g. oleo</span>
+              <span></span>
             </li>
             <li>
               <img src="http://localhost:3333/uploads/oleo.svg" alt="teste" />
@@ -98,6 +110,9 @@ const CreatePoint = () => {
             </li>
           </ul>
         </fieldset>
+        <button type="submit">
+           Cadastrar ponto de coleta
+        </button>
       </form>
     </div>
   );
